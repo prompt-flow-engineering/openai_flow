@@ -7,30 +7,30 @@ import runPrint from "./print/run";
 
 let context: Context = {};
 
-const runFlow = (file_path: string) => {
+const runFlow = async (file_path: string) => {
   const resolvedPath = path.resolve(file_path);
   const flowConfig: Config = require(resolvedPath);
   validateConfig(flowConfig);
   flowConfig.actions.map((action: Action) => validateAction(action));
   console.log("[INFO] Configuration file validated. Starting to run.");
 
-  flowConfig.actions.map((action: Action, index: number) => {
+  for (const [index, action] of flowConfig.actions.entries()) {
     console.log(`[INFO] Executing action #${index}`);
-    context[action.name] = executeAction(action);
-  });
+    context[action.name] = await executeAction(flowConfig, action);
+  }
 };
 
-const executeAction = (action: Action) => {
+const executeAction = async (config: Config, action: Action) => {
   if (action.debugOutput) {
     return action.debugOutput;
   }
 
   if (action.type === "openai") {
-    return runOpenai(action, context);
+    return await runOpenai(config, action, context);
   }
 
   if (action.type === "print") {
-    return runPrint(action, context);
+    return await runPrint(action, context);
   }
 };
 

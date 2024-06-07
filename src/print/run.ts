@@ -1,10 +1,10 @@
 import { parseStringWithParameters } from "../helper";
 import { Action, Context } from "../types";
 
-const runPrint = (
+const runPrint = async (
   action: Action,
   context: Context,
-): string | number | undefined => {
+): Promise<string | number | undefined> => {
   const parsedPrompt = parseStringWithParameters(
     action.output,
     action.parameters,
