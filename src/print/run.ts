@@ -7,7 +7,6 @@ const runPrint = async (
 ): Promise<string | number | undefined> => {
   const parsedPrompt = parseStringWithParameters(
     action.output,
-    action.parameters,
     context,
   );
   console.log(parsedPrompt);

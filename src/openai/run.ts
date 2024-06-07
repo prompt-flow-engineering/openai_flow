@@ -16,7 +16,6 @@ const runOpenai = async (
         content:
           parseStringWithParameters(
             action.prompt,
-            action.parameters,
             context,
           ) || "",
       },
