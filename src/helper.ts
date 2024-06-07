@@ -1,7 +1,7 @@
 import { Context } from "./types";
 
 const extractPlaceholders = (str: string): string[] => {
-  const regex = /\{(\d+)\}/g;
+  const regex = /\{(.+)\}/g;
   const matches = [...str.matchAll(regex)];
   return matches.map((match) => match[1]);
 };
@@ -16,7 +16,6 @@ const parseStringWithParameters = (
 
   let parsedString = inputString;
   const placeholders = extractPlaceholders(inputString);
-
   placeholders.map((placeholder: any) => {
     parsedString = parsedString.replace(
       `{${placeholder}}`,
