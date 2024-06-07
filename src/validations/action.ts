@@ -1,10 +1,4 @@
-type Action = {
-  type: string;
-  name: string;
-  prompt?: string;
-  parameters?: Array<string>;
-  debugOutput?: string | number | undefined;
-};
+import { Action } from "../types";
 
 const validateAction = (action: Action) => {
   if (!action.type) {

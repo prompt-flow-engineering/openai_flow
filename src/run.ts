@@ -1,19 +1,7 @@
 import path from "path";
 import validateConfig from "./validations/config";
 import validateAction from "./validations/action";
-
-type Config = {
-  openAiKey: string;
-  actions: Array<Action>;
-};
-
-type Action = {
-  type: string;
-  name: string;
-  prompt?: string;
-  parameters?: Array<string>;
-  debugOutput?: string | number | undefined;
-};
+import { Action, Config } from "./types";
 
 let context: { [index: string | number]: any } = {};
 

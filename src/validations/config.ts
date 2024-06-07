@@ -1,7 +1,4 @@
-type Config = {
-  openAiKey: string;
-  actions: Array<any>;
-};
+import { Config } from "../types";
 
 const validateConfig = (config: Config) => {
   if (!config.openAiKey) {
