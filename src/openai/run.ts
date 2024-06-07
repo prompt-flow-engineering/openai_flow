@@ -21,7 +21,7 @@ const runOpenai = async (
           ) || "",
       },
     ],
-    model: "gpt-3.5-turbo",
+    model: config.model,
   });
 
   // return parseStringWithParameters(action.prompt, action.parameters, context);

@@ -5,6 +5,10 @@ const validateConfig = (config: Config) => {
     throw "Your config should have the 'openAiKey' key set with your OpenAI key.";
   }
 
+  if (!config.model) {
+    throw "Your config should have the 'model' key set with your model.";
+  }
+
   if (
     !config.actions ||
     typeof config.actions.length !== "number" ||
