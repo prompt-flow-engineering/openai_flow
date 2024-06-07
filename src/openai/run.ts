@@ -24,7 +24,6 @@ const runOpenai = async (
     model: config.model,
   });
 
-  // return parseStringWithParameters(action.prompt, action.parameters, context);
   return `${completion.choices[0].message.content}`;
 };
 
