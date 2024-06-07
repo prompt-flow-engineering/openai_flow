@@ -1,12 +1,16 @@
 import { parseStringWithParameters } from "../helper";
-import { Action } from "../types";
+import { Action, Context } from "../types";
 
 const runPrint = (
   action: Action,
-  context: { [index: string | number]: any },
-): any => {
-  const parsedPrompt = parseStringWithParameters(action.output, action.parameters, context)
-  console.log(parsedPrompt)
+  context: Context,
+): string | number | undefined => {
+  const parsedPrompt = parseStringWithParameters(
+    action.output,
+    action.parameters,
+    context,
+  );
+  console.log(parsedPrompt);
   return parsedPrompt;
 };
 

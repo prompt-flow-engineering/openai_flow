@@ -1,10 +1,10 @@
 import { parseStringWithParameters } from "../helper";
-import { Action } from "../types";
+import { Action, Context } from "../types";
 
 const runOpenai = (
   action: Action,
-  context: { [index: string | number]: any },
-): any => {
+  context: Context,
+): string | number | undefined => {
   return parseStringWithParameters(action.prompt, action.parameters, context);
 };
 

@@ -1,7 +1,9 @@
+import { Context } from "./types";
+
 const parseStringWithParameters = (
   inputString: string | undefined,
   parameters: Array<string> | undefined,
-  context: { [index: string | number]: any },
+  context: Context,
 ) => {
   if (!inputString || !parameters) {
     return inputString;

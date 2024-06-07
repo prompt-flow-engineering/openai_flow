@@ -1,11 +1,11 @@
 import path from "path";
 import validateConfig from "./validations/config";
 import validateAction from "./validations/action";
-import { Action, Config } from "./types";
+import { Action, Config, Context } from "./types";
 import runOpenai from "./openai/run";
 import runPrint from "./print/run";
 
-let context: { [index: string | number]: any } = {};
+let context: Context = {};
 
 const runFlow = (file_path: string) => {
   const resolvedPath = path.resolve(file_path);

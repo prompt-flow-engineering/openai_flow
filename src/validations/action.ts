@@ -9,11 +9,11 @@ const validateAction = (action: Action) => {
     throw "The available types for an action are: openai, print.";
   }
 
-  if (action.type === 'openai' && !action.prompt && !action.debugOutput) {
+  if (action.type === "openai" && !action.prompt && !action.debugOutput) {
     throw "A prompt in key 'prompt' is necessary of openai actions.";
   }
 
-  if (action.type === 'print' && !action.output && !action.debugOutput) {
+  if (action.type === "print" && !action.output && !action.debugOutput) {
     throw "An output in key 'output' is necessary of print actions.";
   }
 
