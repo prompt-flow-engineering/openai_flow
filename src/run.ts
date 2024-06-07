@@ -2,6 +2,8 @@ import path from "path";
 import validateConfig from "./validations/config";
 import validateAction from "./validations/action";
 import { Action, Config } from "./types";
+import runOpenai from "./openai/run";
+import runPrint from "./print/run";
 
 let context: { [index: string | number]: any } = {};
 
@@ -16,25 +18,6 @@ const runFlow = (file_path: string) => {
     console.log(`[INFO] Executing action #${index}`);
     context[action.name] = executeAction(action);
   });
-
-  console.log(context);
-};
-
-const promptBuilder = (
-  prompt: string | undefined,
-  parameters: Array<string> | undefined,
-) => {
-  if (!prompt || !parameters) {
-    return prompt;
-  }
-  let parsedPrompt = prompt;
-  parameters.map((parameter) => {
-    parsedPrompt = parsedPrompt.replace(
-      `{${parameter}}`,
-      `${context[parameter]}`,
-    );
-  });
-  return parsedPrompt;
 };
 
 const executeAction = (action: Action) => {
@@ -43,7 +26,11 @@ const executeAction = (action: Action) => {
   }
 
   if (action.type === "openai") {
-    return promptBuilder(action.prompt, action.parameters);
+    return runOpenai(action, context);
+  }
+
+  if (action.type === "print") {
+    return runPrint(action, context);
   }
 };
 

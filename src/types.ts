@@ -6,6 +6,7 @@ export type Config = {
 export type Action = {
   type: string;
   name: string;
+  output?: string;
   prompt?: string;
   parameters?: Array<string>;
   debugOutput?: string | number | undefined;
